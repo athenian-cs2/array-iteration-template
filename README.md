@@ -1,49 +1,14 @@
-# Sum of Two Dice
+# Array Iteration
 
-In this assignment, you'll be writing two methods related to random numbers and arrays. 
+In this assignment, you'll be writing three methods to iterate through arrays
 
-The first method is rollDie(). This method represents the rolling of a single die. It takes no inputs, and returns a single integer between 1 and 6, inclusive. The method has the following signature: public static int rollDie() {}
+The first method is reverse(). This method takes an array of integers as input, and returns an array of integers containing the elements in the original array in reversed order. The method has the following signature: public static int[] reverse(int[] arr) {}
 
-The second method is sumOfTwoDice(). This method takes an input an integer n. The method will then simulate the rolling of n pairs of dice, and it will keep track of how many times each sum came up. Specifically, the method will return an array of length 11, where the first element in the array corresponds to how many times the dice summed up to 2, the second element in the array coorresponds to how many times the dice summed up to 3, and so on, until the last element in the array corresponds to the number of times the dice summed up to 12. 
+The second method is secondLargest(). This method takes an array of integers as input, and returns the second largest number in an array. You may assume the array contains at least 2 values. The method has the following signature: public static int secondLargest(int[] arr) {}
 
-For instance, let's say that n were 3. That means we would roll 3 pairs of dice. We might see something like:
-* Die1 = 1, Die2 = 6 => sum = 7
-* Die1 = 3, Die2 = 5 => sum = 8
-* Die1 = 1, Die2 = 4 => sum = 5
+The third method is isGeometric(). This method takes an array of integers as input, and returns true if the values in the array correspond to a geometric series. A geometric series is a series of numbers where the next number is equal to the current number times some set factor. For instance, the following array contains a geometric series because each number is twice as large as the previous number: [1, 2, 4, 8, 16, 32]. The values in the arrays will all be integers; however, the factor may be a number less than 1. The method has the following signature: public static boolean isGeometric(int[] arr) {} 
 
-We note the sum of the first pair is 7, the sum of the second pair is 8, and the sum of the third pair is 5. This means that we've seen:
-* 0 pairs that summed to 2
-* 0 pairs that summed to 3 
-* 0 pairs that summed to 4
-* 1 pair that summed to 5
-* 0 pairs that summed to 6
-* 1 pair that summed to 7
-* 1 pair that summed to 8
-* 0 pairs that summed to 9
-* 0 pairs that summed to 10
-* 0 pairs that summed to 11
-* and 0 pairs that summed to 12. 
-
-Thus, the output array for this example would be: [0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0]
-
-Once both methods are working, write code in your main method to ask the user for a number of times to roll the dice. Then, print out what percentage of times each sum came up. Because it is random, your results will vary, but they should be somewhat simliar to the example below.
-
-Example of what your program may look like when it is being run:
-```shell script
-How many pair of dice would you like to roll?
-1000000
-% of rolls where sum == 2: 2.7744999999999997
-% of rolls where sum == 3: 5.5501000000000005
-% of rolls where sum == 4: 8.3884
-% of rolls where sum == 5: 11.0656
-% of rolls where sum == 6: 13.8711
-% of rolls where sum == 7: 16.6147
-% of rolls where sum == 8: 13.883499999999998
-% of rolls where sum == 9: 11.1155
-% of rolls where sum == 10: 8.36
-% of rolls where sum == 11: 5.5903
-% of rolls where sum == 12: 2.7862999999999998
-```
+You don't need to include a Scanner in your main method. However, your main method should contain some code where you call your three functions to test that they work properly. 
 
 <br />
 <br />
