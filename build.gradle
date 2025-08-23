@@ -1,18 +1,19 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
 }
 
 group 'org.athenian'
 version '1.0-SNAPSHOT'
 
-mainClassName = 'MyMain'
+application {
+    mainClass = 'MyMain'
+}
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-run{
-    standardInput = System.in
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 repositories {
@@ -20,7 +21,18 @@ repositories {
 }
 
 dependencies {
-    testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
+    // JUnit 5 dependencies (latest stable - fully backwards compatible)
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.11.0')
+    testImplementation('org.junit.jupiter:junit-jupiter-params:5.11.0')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.11.0')
+    testRuntimeOnly('org.junit.platform:junit-platform-launcher:1.11.0')
+
+    // Google Java Format for code formatting tasks (latest)
+    runtimeOnly('com.google.googlejavaformat:google-java-format:1.23.0')
+}
+
+run {
+    standardInput = System.in
 }
 
 test {
@@ -32,3 +44,30 @@ test {
         showStandardStreams = true
     }
 }
+
+checkstyle {
+    toolVersion = '10.17.0'  // Latest version
+    configFile = file('config/checkstyle/checkstyle.xml')
+}
+
+// Task to format code using Google Java Format
+task formatCode(type: JavaExec) {
+    group = 'formatting'
+    description = 'Format Java source code using Google Java Format'
+    
+    classpath = configurations.runtimeClasspath
+    mainClass = 'com.google.googlejavaformat.java.Main'
+    args = ['--replace'] + fileTree(dir: 'src', include: '**/*.java').files
+}
+
+// Task to check code formatting
+task checkFormat(type: JavaExec) {
+    group = 'verification'
+    description = 'Check if Java source code is properly formatted'
+    
+    classpath = configurations.runtimeClasspath
+    mainClass = 'com.google.googlejavaformat.java.Main'
+    args = ['--dry-run', '--set-exit-if-changed'] + fileTree(dir: 'src', include: '**/*.java').files
+}
+
+check.dependsOn checkFormat
