@@ -1,9 +1,102 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 public class MyTests {
+
+  @Test
+  public void testAddArrays3() {
+    assertArrayEquals(
+        new int[] {3, 7, 11},
+        MyMain.addArrays3(new int[] {1, 3, 5}, new int[] {2, 4, 6}),
+        "Adding [1, 3, 5] + [2, 4, 6] should be: [3, 7, 11]");
+    assertArrayEquals(
+        new int[] {0, 0, 0},
+        MyMain.addArrays3(new int[] {1, 2, 3}, new int[] {-1, -2, -3}),
+        "Adding [1, 2, 3] + [-1, -2, -3] should be: [0, 0, 0]");
+    assertArrayEquals(
+        new int[] {10, 20, 30},
+        MyMain.addArrays3(new int[] {5, 10, 15}, new int[] {5, 10, 15}),
+        "Adding [5, 10, 15] + [5, 10, 15] should be: [10, 20, 30]");
+    assertArrayEquals(
+        new int[] {0, 1, 2},
+        MyMain.addArrays3(new int[] {0, 0, 0}, new int[] {0, 1, 2}),
+        "Adding [0, 0, 0] + [0, 1, 2] should be: [0, 1, 2]");
+  }
+
+  @Test
+  public void testAverage3() {
+    assertArrayEquals(
+        new double[] {3.0, 3.0, 3.0},
+        MyMain.average3(new int[] {1, 3, 5}),
+        0.001,
+        "Average of [1, 3, 5] should be: [3.0, 3.0, 3.0]");
+    assertArrayEquals(
+        new double[] {2.0, 2.0, 2.0},
+        MyMain.average3(new int[] {0, 2, 4}),
+        0.001,
+        "Average of [0, 2, 4] should be: [2.0, 2.0, 2.0]");
+    assertArrayEquals(
+        new double[] {5.0, 5.0, 5.0},
+        MyMain.average3(new int[] {5, 5, 5}),
+        0.001,
+        "Average of [5, 5, 5] should be: [5.0, 5.0, 5.0]");
+    assertArrayEquals(
+        new double[] {0.0, 0.0, 0.0},
+        MyMain.average3(new int[] {-3, 0, 3}),
+        0.001,
+        "Average of [-3, 0, 3] should be: [0.0, 0.0, 0.0]");
+  }
+
+  @Test
+  public void testSum() {
+    assertEquals(
+        40,
+        MyMain.sum(new int[] {1, 6, 2, 6, 8, 2, 3, 9, 3}),
+        "Sum of [1, 6, 2, 6, 8, 2, 3, 9, 3] should be: 40");
+    assertEquals(
+        15,
+        MyMain.sum(new int[] {1, 2, 3, 4, 5}),
+        "Sum of [1, 2, 3, 4, 5] should be: 15");
+    assertEquals(
+        0,
+        MyMain.sum(new int[] {0, 0, 0, 0}),
+        "Sum of [0, 0, 0, 0] should be: 0");
+    assertEquals(
+        0,
+        MyMain.sum(new int[] {-5, -2, 7}),
+        "Sum of [-5, -2, 7] should be: 0");
+    assertEquals(
+        100,
+        MyMain.sum(new int[] {100}),
+        "Sum of [100] should be: 100");
+  }
+
+  @Test
+  public void testMax() {
+    assertEquals(
+        9,
+        MyMain.max(new int[] {1, 6, 2, 6, 8, 2, 3, 9, 3}),
+        "Max of [1, 6, 2, 6, 8, 2, 3, 9, 3] should be: 9");
+    assertEquals(
+        5,
+        MyMain.max(new int[] {1, 2, 3, 4, 5}),
+        "Max of [1, 2, 3, 4, 5] should be: 5");
+    assertEquals(
+        0,
+        MyMain.max(new int[] {-5, -2, 0, -10}),
+        "Max of [-5, -2, 0, -10] should be: 0");
+    assertEquals(
+        -1,
+        MyMain.max(new int[] {-5, -2, -1, -10}),
+        "Max of [-5, -2, -1, -10] should be: -1");
+    assertEquals(
+        100,
+        MyMain.max(new int[] {100}),
+        "Max of [100] should be: 100");
+  }
 
   @Test
   public void testReverse() {
